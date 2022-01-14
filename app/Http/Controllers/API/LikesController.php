@@ -35,7 +35,7 @@ class LikesController extends Controller
             'post_id' => 'required_without:comment_id',
             'comment_id' => 'required_without:post_id'
         ]);
-        if(Like::where('type', $request->type)->where('post_id', $request->post_id)->where('comment_id', $request->comment_id)->exists())
+        if(Like::where('user_id', auth()->id())->where('type', $request->type)->where('post_id', $request->post_id)->where('comment_id', $request->comment_id)->exists())
             return $this->error('Already liked', 409);
         $like = Like::create([
             'type' => $request->type,
