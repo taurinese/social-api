@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        return $this->success(Post::with('user')->get());
+        return $this->success(Post::with('user')->with('comments')->withCount('likes')->get());
     }
     
     /**
@@ -57,7 +57,7 @@ class PostsController extends Controller
     */
     public function show($id)
     {   
-        $post = Post::find($id);
+        $post = Post::where('id', $id)->with('user')->with('comments')->withCount('likes')->get();
         if(!$post) return $this->error('Post not found', 404);
         return $this->success($post);
     }
