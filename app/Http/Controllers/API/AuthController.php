@@ -35,7 +35,8 @@ class AuthController extends Controller
         } 
 
         return $this->success([
-            'token' => $user->createToken('API Token')->plainTextToken
+            'token' => $user->createToken('API Token')->plainTextToken,
+            'user' => $user
         ]);
     }
 
@@ -57,10 +58,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->user()->tokens()->delete();
-
-        return [
-            'message' => 'Tokens Revoked'
-        ];
+        // auth()->user()->tokens()->delete();
+        Auth::logout();
+        return $this->success([], 'Disconnected');
     }
 }
