@@ -52,7 +52,8 @@ class AuthController extends Controller
         }
 
         return $this->success([
-            'token' => auth()->user()->createToken('API Token')->plainTextToken
+            'token' => auth()->user()->createToken('API Token')->plainTextToken,
+            'user' => auth()->user()
         ]);
     }
 
