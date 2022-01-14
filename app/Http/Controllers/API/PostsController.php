@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        return $this->success(Post::all());
+        return $this->success(Post::with('user')->get());
     }
     
     /**
