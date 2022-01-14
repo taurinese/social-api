@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        return $this->success(Post::with('user')->with('comments')->withCount('likes')->get());
+        return $this->success(Post::with('user')->with('comments')->withCount('likes')->orderBy('created_at', 'desc')->get());
     }
     
     /**
