@@ -29,7 +29,7 @@ class AuthController extends Controller
         
         if($request->image){
             $fileName = date('mdYHis') . uniqid() . $request->file('image')->getFilename();
-            $uploadedFileUrl = $request->file('image')->storeOnCloudinaryAs('images', $fileName);
+            $uploadedFileUrl = $request->file('image')->storeOnCloudinaryAs('images', $fileName)->getSecurePath();
             $user->url_image = $uploadedFileUrl;
             $user->save();
         } 
