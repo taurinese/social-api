@@ -22,7 +22,7 @@ class CommentsController extends Controller
         $request->validate([
             'post_id' => 'required|exists:posts,id'
         ]);
-        $comments = Post::where('id', $request->post_id)->with('comments')->withCount('likes')->get();
+        $comments = Post::where('id', $request->post_id)->with('comments')->withCount('likes')->with('user')->get();
         return $this->success($comments);
     }
 
