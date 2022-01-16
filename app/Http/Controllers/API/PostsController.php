@@ -57,7 +57,7 @@ class PostsController extends Controller
     */
     public function show($id)
     {   
-        $post = Post::where('id', $id)->with('user')->with('comments')->withCount('likes')->get();
+        $post = Post::where('id', $id)->with('user')->with('comments')->withCount('likes')->first();
         if(!$post) return $this->error('Post not found', 404);
         return $this->success($post);
     }
